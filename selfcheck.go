@@ -296,7 +296,7 @@ func selfCheckHandler(c *Ctx) {
 			e(it.Name), cls, statusIcon(it.Status), label, e(zhErr(it.Detail)))
 	}
 	content := `<div class="card"><div class="actions" style="justify-content:space-between">
-      <div><h2>运行环境自检</h2><div class="muted">检查时间：` + e(nowStr()) + `。检测在容器内执行，结果反映 Agent 实际运行环境。</div></div>
+      <div><h2>运行环境自检</h2><div class="muted">检查时间：` + e(nowStr()) + `。检测在容器内执行，结果反映 管家实际运行环境。</div></div>
       <a class="btn" href="/selfcheck">重新检测</a></div>
       <table><tr><th style="width:180px">检查项</th><th style="width:110px">结果</th><th>说明</th></tr>` + rows.String() + `</table></div>`
 	c.html(c.layout("运行环境自检", content, "settings_page"))

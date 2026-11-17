@@ -29,7 +29,7 @@ func dnsPageHandler(c *Ctx) {
 	} else {
 		content = liveRegion("dnslist", "/api/dns", "dns", renderDNSPage(c))
 	}
-	sub := fmt.Sprintf("Agent 直接查询公共 DNS（不经过本机缓存），每 %d 秒复检一次；传播中或异常的记录每 60 秒快速复检", getSettingInt("domain_check_interval", 300))
+	sub := fmt.Sprintf("管家直接查询公共 DNS（不经过本机缓存），每 %d 秒复检一次；传播中或异常的记录每 60 秒快速复检", getSettingInt("domain_check_interval", 300))
 	c.html(c.layoutWith("DNS 解析", sub, "", content, "dns_page"))
 }
 

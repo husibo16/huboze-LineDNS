@@ -17,7 +17,7 @@ cp deploy.sh README.md "$OUT/"
 chmod +x "$OUT/huboze-ddns-agent" "$OUT/deploy.sh"
 
 cat > "$OUT/部署说明.txt" <<TXT
-huboze DDNS Agent v$VERSION 部署包
+huboze 线路解析管家 v$VERSION 部署包
 
 文件：
   deploy.sh            一键部署脚本

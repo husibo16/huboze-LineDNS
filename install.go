@@ -357,7 +357,7 @@ func ensurePingGroupRange() {
 		lo, hi = min(lo, containerUID), max(hi, containerUID)
 	}
 	val := fmt.Sprintf("%d %d", lo, hi)
-	_ = os.WriteFile("/etc/sysctl.d/60-huboze-ddns-agent.conf", []byte("# huboze DDNS Agent: unprivileged ICMP for container gid 10001\nnet.ipv4.ping_group_range = "+val+"\n"), 0o644)
+	_ = os.WriteFile("/etc/sysctl.d/60-huboze-ddns-agent.conf", []byte("# huboze 线路解析管家: unprivileged ICMP for container gid 10001\nnet.ipv4.ping_group_range = "+val+"\n"), 0o644)
 	if err := os.WriteFile(p, []byte(val), 0o644); err != nil {
 		warning("设置 ping_group_range 失败：%v；ICMP 检测将不可用（可改用 TCP 端口检测）", err)
 		return
@@ -457,7 +457,7 @@ func buildImage(binPath string) error {
 		pw.CloseWithError(writeRootfsTar(pw, binPath))
 	}()
 	cmd := exec.Command("docker", "import",
-		"-m", "huboze DDNS Agent "+Version,
+		"-m", "huboze 线路解析管家 "+Version,
 		"--change", "USER 10001:10001",
 		"--change", "ENV HUBOZE_APP_DIR=/",
 		"--change", "ENV HUBOZE_IN_CONTAINER=1",
@@ -593,7 +593,7 @@ func detectLegacy() legacyKind {
 
 func install() (retErr error) {
 	line()
-	fmt.Println("        huboze DDNS Agent v" + Version + "（Go + Docker Compose）")
+	fmt.Println("        huboze 线路解析管家 v" + Version + "（Go + Docker Compose）")
 	fmt.Println("        H3C MSR Multi-WAN + Multi-DNS")
 	line()
 
@@ -914,7 +914,7 @@ func install() (retErr error) {
 		note = "原地升级（数据、凭据、密码已保留）"
 	}
 	line()
-	success("结果：huboze DDNS Agent v%s（Go + Docker Compose）部署完成", Version)
+	success("结果：huboze 线路解析管家 v%s（Go + Docker Compose）部署完成", Version)
 	if backupDir != "" {
 		info("回滚备份：%s（仅保留最近 %d 份）", backupDir, keepBackups)
 	}

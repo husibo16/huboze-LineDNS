@@ -77,7 +77,7 @@ func (d deployInfo) render() string {
 	w := func(f string, a ...any) { fmt.Fprintf(&b, f+"\n", a...) }
 	addrs := accessAddrs(d.port)
 	main := addrs[0].url
-	w("huboze DDNS Agent v%s 部署信息", d.version)
+	w("huboze 线路解析管家 v%s 部署信息", d.version)
 	w("生成时间：%s", time.Now().Format("2006-01-02 15:04:05"))
 	if d.note != "" {
 		w("部署方式：%s", d.note)
@@ -169,7 +169,7 @@ func printDeployInfo(d deployInfo) {
 			fmt.Println(cBlue + l + cReset)
 		case strings.HasPrefix(l, "  密码：") || strings.HasPrefix(l, "  账号："):
 			fmt.Println(cYellow + l + cReset)
-		case strings.HasPrefix(l, "huboze DDNS Agent"):
+		case strings.HasPrefix(l, "huboze 线路解析管家"):
 			fmt.Println(cGreen + l + cReset)
 		default:
 			fmt.Println(l)

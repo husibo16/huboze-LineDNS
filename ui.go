@@ -35,7 +35,7 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",mo
 .side{width:232px;background:var(--panel);border-right:1px solid var(--border);padding:20px 12px;position:fixed;top:0;bottom:0;display:flex;flex-direction:column;z-index:20}
 .brand{display:flex;align-items:center;gap:10px;margin:0 8px 22px}
 .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;flex:none}
-.brand-name{font-weight:700;font-size:15px;line-height:1.2}.ver{font-size:11px;color:var(--muted);font-weight:400}
+.brand-name{font-weight:700;font-size:14px;line-height:1.25;white-space:nowrap}.ver{font-size:11px;color:var(--muted);font-weight:400}
 .nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:2px 0;border-radius:9px;color:var(--muted);font-weight:500}
 .nav a svg{width:18px;height:18px;flex:none}
 .nav a:hover{background:var(--hover);color:var(--text)}.nav a.on{background:var(--info-bg);color:var(--accent-text)}
@@ -255,7 +255,7 @@ func icon(name string) string {
 	return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">` + icons[name] + `</svg>`
 }
 
-const brandHTML = `<div class="brand"><div class="logo">H</div><div><div class="brand-name">huboze DDNS</div><div class="ver">Agent v` + Version + `</div></div></div>`
+const brandHTML = `<div class="brand"><div class="logo">H</div><div><div class="brand-name">huboze 线路解析管家</div><div class="ver">LineDNS v` + Version + `</div></div></div>`
 
 // uiJS: theme toggle, dismissible flash messages, relative times, "更多" menus.
 const uiJS = `<script>
@@ -308,7 +308,7 @@ func (c *Ctx) layoutWith(title, sub, headExtra, content, active string) string {
 		subHTML = `<div class="top-sub">` + sub + `</div>`
 	}
 	return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>` + e(title) + ` - huboze DDNS Agent</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>` + e(title) + ` - huboze 线路解析管家</title>
 ` + baseStyle + `</head><body data-now="` + e(nowStr()) + `"><div class="wrap"><aside class="side">` + brandHTML + `
 <nav class="nav">` + nav.String() + `</nav><div class="side-foot"><button type="button" class="side-btn" onclick="toggleTheme()"><span class="t-dark">` + icon("sun") + `</span><span class="t-light">` + icon("moon") + `</span><span class="t-dark">浅色主题</span><span class="t-light">深色主题</span></button>` + logout + `</div></aside>
 <main class="main"><div class="top"><div><h1>` + e(title) + `</h1>` + subHTML + `</div><div class="actions">` + headExtra + `</div></div>` + c.flashHTML() + content + `</main></div>` + uiJS + submitGuardJS + `</body></html>`

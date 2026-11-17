@@ -132,7 +132,7 @@ func renderDashboard(c *Ctx) string {
 		case d.Enabled && d.LastStatus == "ERROR":
 			issues = append(issues, dashIssue{2, d.Name + " 无法连接", d.LastError, d.LastSeen, "/devices", "查看设备"})
 		case !d.Enabled && d.LastError != "" && isLockoutRisk(fmt.Errorf("%s", d.LastError)):
-			issues = append(issues, dashIssue{1, d.Name + " 已自动停用", "为避免 H3C 账号被反复锁定，Agent 已停用该设备：" + d.LastError, d.LastSeen, "/devices", "处理"})
+			issues = append(issues, dashIssue{1, d.Name + " 已自动停用", "为避免 H3C 账号被反复锁定，管家已停用该设备：" + d.LastError, d.LastSeen, "/devices", "处理"})
 		}
 	}
 	for _, p := range providers {
@@ -177,7 +177,7 @@ func renderDashboard(c *Ctx) string {
 	case enMap == 0:
 		state, title, ic = "s-idle", "已就绪，尚未添加域名映射", "clock"
 	}
-	sub := "完成下方的快速开始后，Agent 会自动把 MSR 拨号线路的 IP 同步到 DNS。"
+	sub := "完成下方的快速开始后，管家会自动把 MSR 拨号线路的 IP 同步到 DNS。"
 	if len(devices) > 0 || len(mappings) > 0 {
 		parts := []string{}
 		if hbEpoch > 0 {
@@ -409,7 +409,7 @@ func recentEvents() string {
 
 func sysLine(runtime map[string]string) string {
 	started := runtime["service_started_at"]
-	s := fmt.Sprintf(`<div class="sysline"><span>Agent v%s 已运行 %s</span>`, Version, humanDuration(sessionUptime()))
+	s := fmt.Sprintf(`<div class="sysline"><span>v%s 已运行 %s</span>`, Version, humanDuration(sessionUptime()))
 	if started != "" {
 		s += `<span>启动于 ` + e(started) + `</span>`
 	}
@@ -447,7 +447,7 @@ func onboardingCard(providers []*Provider, devices []*Device, mappings []*Mappin
 		return ""
 	}
 	var b strings.Builder
-	b.WriteString(`<section class="card"><div class="card-head"><div><h2>快速开始</h2><div class="muted">完成以下 4 步，Agent 就会按周期自动同步 DNS。</div></div><a class="btn btn2 small" href="/help">了解工作原理</a></div><div class="steps">`)
+	b.WriteString(`<section class="card"><div class="card-head"><div><h2>快速开始</h2><div class="muted">完成以下 4 步，管家就会按周期自动同步 DNS。</div></div><a class="btn btn2 small" href="/help">了解工作原理</a></div><div class="steps">`)
 	nextMarked := false
 	for _, s := range steps {
 		cls := ""

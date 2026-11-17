@@ -40,5 +40,5 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" \
             "${{ steps.pkg.outputs.PACKAGE }}" "${{ steps.pkg.outputs.PACKAGE }}.sha256" \
-            --title "huboze DDNS Agent $GITHUB_REF_NAME" \
+            --title "huboze 线路解析管家 $GITHUB_REF_NAME" \
             --notes "下载 huboze-ddns-agent-$GITHUB_REF_NAME.tar.gz，解压后以 root 执行 \`bash deploy.sh\` 即可安装或原地升级。详见包内 部署说明.txt。"

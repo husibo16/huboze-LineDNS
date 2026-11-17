@@ -1,6 +1,11 @@
-# huboze DDNS Agent v2.4.5（Go + Docker Compose）
+# huboze 线路解析管家（LineDNS）v2.4.6
 
-H3C MSR 多 WAN + 多 DNS 服务商（Cloudflare / 腾讯云 DNSPod / 阿里云 / 华为云）DDNS Agent。
+Go + Docker + Docker Compose
+
+H3C MSR 多线路动态解析：通过 SSH 读取路由器各拨号线路的公网 IP，自动同步到多个 DNS 服务商（Cloudflare / 腾讯云 DNSPod / 阿里云 / 华为云），并确认解析生效。
+
+> 程序、容器、目录等技术标识仍为 `huboze-ddns-agent`，便于已部署实例原地升级。
+
 **唯一正式部署方式：Go 静态二进制 + Docker + Docker Compose。**
 
 同一个二进制既是安装/管理命令（宿主机），也是容器内的服务（`serve`）。

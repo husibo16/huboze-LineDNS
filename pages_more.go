@@ -813,7 +813,7 @@ func settingsHandler(c *Ctx) {
       </label>
       <label>公共 DNS 健康检查服务器
         <input name="dns_resolvers" value="` + e(getSetting("dns_resolvers", "223.5.5.5,119.29.29.29,1.1.1.1,8.8.8.8")) + `">
-        <div class="muted">逗号分隔，最多 8 个。Agent 会直接查询这些 DNS，不经过系统 DNS 缓存。默认：AliDNS、DNSPod、Cloudflare DNS、Google DNS。</div>
+        <div class="muted">逗号分隔，最多 8 个。管家会直接查询这些 DNS，不经过系统 DNS 缓存。默认：AliDNS、DNSPod、Cloudflare DNS、Google DNS。</div>
       </label>
       <label>时区<input name="timezone" value="` + e(getSetting("timezone", "Asia/Shanghai")) + `"></label>
     </div>

@@ -18,7 +18,7 @@ import (
 	_ "time/tzdata"
 )
 
-const Version = "2.4.5"
+const Version = "2.4.6"
 
 var (
 	AppDir         = "/opt/huboze-ddns-agent"
@@ -46,7 +46,7 @@ func initPaths() {
 func inContainer() bool { return os.Getenv("HUBOZE_IN_CONTAINER") == "1" }
 
 func usage() {
-	fmt.Println(`huboze DDNS Agent v` + Version + `（Go + Docker Compose）
+	fmt.Println(`huboze 线路解析管家 v` + Version + `（Go + Docker Compose）
 
 用法: huboze-ddns-agent <命令>
 
@@ -173,7 +173,7 @@ func serve() error {
 	}
 	errc := make(chan error, 1)
 	go func() {
-		log.Printf("huboze DDNS Agent v%s 已启动，监听 %s（数据目录：%s）", Version, listen, DataDir)
+		log.Printf("huboze 线路解析管家 v%s 已启动，监听 %s（数据目录：%s）", Version, listen, DataDir)
 		errc <- srv.ListenAndServe()
 	}()
 	select {
@@ -227,7 +227,7 @@ func cmdSelfCheck() error {
 		return err
 	}
 	defer DB.Close()
-	fmt.Println("huboze DDNS Agent v" + Version + " 运行环境自检：")
+	fmt.Println("huboze 线路解析管家 v" + Version + " 运行环境自检：")
 	_, failAny := printCheckItems(runSelfCheck())
 	if failAny {
 		return exitError{1, ""}

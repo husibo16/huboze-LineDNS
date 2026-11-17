@@ -46,7 +46,7 @@ func loginHandler(c *Ctx) {
         <button type="submit">登录</button>
       </form>
     </div></div>`
-	c.html(`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登录 - huboze DDNS Agent</title>` + baseStyle + `</head>
+	c.html(`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登录 - huboze 线路解析管家</title>` + baseStyle + `</head>
     <body>` + body + `</body></html>`)
 }
 
@@ -513,7 +513,7 @@ func devicesHandler(c *Ctx) {
 	}
 	form := ""
 	if showForm {
-		form = formCard(ifs(edit != nil, "编辑 "+e(name), "添加 H3C MSR"), "Agent 通过 SSH 登录 MSR 读取拨号接口地址，只执行 display 类查看命令。", "/devices", `
+		form = formCard(ifs(edit != nil, "编辑 "+e(name), "添加 H3C MSR"), "管家通过 SSH 登录 MSR 读取拨号接口地址，只执行 display 类查看命令。", "/devices", `
     <form method="post" action="/device/save">
       `+c.csrfInput()+`
       <input type="hidden" name="id" value="`+e(idStr)+`">
@@ -743,9 +743,9 @@ func deviceFirstLoginPasswordHandler(c *Ctx) {
 				if detail == "" {
 					detail = "SSH 已验证"
 				}
-				c.flash("H3C 首次改密成功；Agent 已保存新密码；SSH 复测成功："+detail, "success")
+				c.flash("H3C 首次改密成功；管家已保存新密码；SSH 复测成功："+detail, "success")
 			} else {
-				c.flash(fmt.Sprintf("H3C 首次改密已经成功，Agent 也已保存新密码；但随后 SSH 复测失败：%v。请查看设备状态。", verr), "warning")
+				c.flash(fmt.Sprintf("H3C 首次改密已经成功，管家也已保存新密码；但随后 SSH 复测失败：%v。请查看设备状态。", verr), "warning")
 			}
 			c.redirect("/devices")
 			return
@@ -758,7 +758,7 @@ func deviceFirstLoginPasswordHandler(c *Ctx) {
     <div class="card" style="max-width:720px">
       <h2>H3C 首次登录改密</h2>
       <div class="msg warning">此向导用于 H3C 提示 <b>First login or password reset</b> 的场景。
-      当前保存的初始 SSH 密码不会显示；成功后 Agent 会自动把新密码加密保存。</div>
+      当前保存的初始 SSH 密码不会显示；成功后 管家会自动把新密码加密保存。</div>
       <div class="code">设备：` + e(d.Name) + `
 地址：` + e(d.Host) + `:` + e(d.Port) + `
 账号：` + e(d.Username) + `</div><br>
@@ -778,7 +778,7 @@ func deviceFirstLoginPasswordHandler(c *Ctx) {
         </label>
         <div id="pw_match" class="muted">请输入两次相同的新密码。</div>
         <div class="muted">至少 8 位、至少两类字符、不要包含用户名。实际仍以 H3C 当前 password-control 策略为准。</div><br>
-        <button type="submit">执行首次改密并同步到 Agent</button>
+        <button type="submit">执行首次改密并保存新密码</button>
         <a class="btn btn2" href="/devices">返回</a>
       </form>
     </div>
@@ -799,7 +799,7 @@ func deviceFirstLoginPasswordHandler(c *Ctx) {
     }
     function validatePwMatch(){
       if(!checkPwMatch()){alert('请确认两次密码完全一致，并且至少 8 位。');return false;}
-      return confirm('确认执行 H3C 首次登录改密？成功后 Agent 会立即保存新密码并重新测试 SSH。');
+      return confirm('确认执行 H3C 首次登录改密？成功后 管家会立即保存新密码并重新测试 SSH。');
     }
     </script>`
 	c.html(c.layout("H3C 首次登录改密", body, "devices"))

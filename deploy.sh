@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  huboze DDNS Agent 一键部署脚本（Go + Docker + Docker Compose）
+#  huboze 线路解析管家 一键部署脚本（Go + Docker + Docker Compose）
 #
 #  用法（root）：
 #    bash deploy.sh                 # 首次安装默认端口 8080；升级时沿用原端口
