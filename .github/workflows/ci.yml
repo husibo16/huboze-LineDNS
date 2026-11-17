@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # 在本仓库专用的自托管运行器上执行
+    runs-on: [self-hosted, linux, x64, huboze-linedns]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: gofmt
+        run: |
+          out="$(gofmt -l .)"
+          if [ -n "$out" ]; then echo "以下文件未格式化："; echo "$out"; exit 1; fi
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: go test
+        run: go test -count=1 ./...
+
+      - name: deploy.sh 语法检查
+        run: bash -n deploy.sh
+
+      - name: 打包
+        id: pkg
+        run: scripts/package.sh | tee -a "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: huboze-ddns-agent-v${{ steps.pkg.outputs.VERSION }}
+          path: |
+            dist/*.tar.gz
+            dist/*.sha256
+          retention-days: 14

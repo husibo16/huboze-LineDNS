@@ -1,0 +1,44 @@
+name: Release
+
+# 推送 v* 标签（例如 v2.4.5）时：测试 → 打包 → 创建 GitHub Release 并上传部署包
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: [self-hosted, linux, x64, huboze-linedns]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: 检查标签与程序版本一致
+        run: |
+          v="$(sed -n 's/^const Version = "\(.*\)"/\1/p' main.go)"
+          if [ "v$v" != "$GITHUB_REF_NAME" ]; then
+            echo "标签 $GITHUB_REF_NAME 与 main.go 中的 Version=$v 不一致"; exit 1
+          fi
+
+      - name: go test
+        run: go test -count=1 ./...
+
+      - name: 打包
+        id: pkg
+        run: scripts/package.sh | tee -a "$GITHUB_OUTPUT"
+
+      - name: 创建 Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "${{ steps.pkg.outputs.PACKAGE }}" "${{ steps.pkg.outputs.PACKAGE }}.sha256" \
+            --title "huboze DDNS Agent $GITHUB_REF_NAME" \
+            --notes "下载 huboze-ddns-agent-$GITHUB_REF_NAME.tar.gz，解压后以 root 执行 \`bash deploy.sh\` 即可安装或原地升级。详见包内 部署说明.txt。"

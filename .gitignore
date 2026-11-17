@@ -1,0 +1,5 @@
+# build outputs
+/huboze-ddns-agent
+/dist/
+*.test
+*.out
