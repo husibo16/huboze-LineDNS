@@ -18,7 +18,7 @@ import (
 	_ "time/tzdata"
 )
 
-const Version = "2.4.6"
+const Version = "1.0.0"
 
 var (
 	AppDir         = "/opt/huboze-ddns-agent"

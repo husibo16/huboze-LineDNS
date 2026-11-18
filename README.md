@@ -1,4 +1,4 @@
-# huboze 线路解析管家（LineDNS）v2.4.6
+# huboze 线路解析管家（LineDNS）v1.0.0
 
 Go + Docker + Docker Compose
 
@@ -74,7 +74,7 @@ huboze-ddns-agent reset-password [新密码]
 huboze-ddns-agent reset-whitelist                # 白名单配错被锁在外面时使用
 ```
 
-## v2.3.0 行为修复
+## 可靠性设计
 
 - 轮询遇到 SSH 认证失败 / 账号锁定 / 要求首次改密时，**自动禁用设备**，不再每分钟重试导致 H3C 账号被反复锁定
 - 每台 MSR 同一时间只建一个 SSH 会话（轮询、测试、刷新接口、保存映射之间排队）
@@ -85,7 +85,7 @@ huboze-ddns-agent reset-whitelist                # 白名单配错被锁在外�
 - 接口状态类错误只在状态变化时记日志，不再每分钟刷屏
 - Web：慢操作防重复提交；映射页优先使用缓存的接口列表（不必每次登录 MSR）；新增“运行环境自检”页
 
-## Web 界面（v2.4.0 重新设计）
+## Web 界面
 
 - 统一视觉：带图标的侧栏、状态色标、深色 / 浅色主题（默认跟随系统，可切换并记住）；手机端自适应，表格自动变为卡片
 - **仪表盘**：
@@ -114,5 +114,5 @@ scripts/package.sh        # 生成 dist/huboze-ddns-agent-v<版本>.tar.gz（含
 GitHub Actions（运行在打了 `huboze-linedns` 标签的自托管运行器上）：
 
 - **CI**（`.github/workflows/ci.yml`）：推送到 `main` 或提交 PR 时执行 gofmt / vet / test / 打包，部署包作为构建产物保留 14 天
-- **Release**（`.github/workflows/release.yml`）：推送 `v*` 标签（须与 `main.go` 中的 `Version` 一致，例如 `v2.4.5`）时自动创建 GitHub Release 并上传部署包
+- **Release**（`.github/workflows/release.yml`）：推送 `v*` 标签（须与 `main.go` 中的 `Version` 一致，例如 `v1.0.0`）时自动创建 GitHub Release 并上传部署包
 

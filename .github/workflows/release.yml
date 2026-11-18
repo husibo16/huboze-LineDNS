@@ -1,6 +1,6 @@
 name: Release
 
-# 推送 v* 标签（例如 v2.4.5）时：测试 → 打包 → 创建 GitHub Release 并上传部署包
+# 推送 v* 标签（例如 v1.0.0）时：测试 → 打包 → 创建 GitHub Release 并上传部署包
 on:
   push:
     tags: ['v*']
