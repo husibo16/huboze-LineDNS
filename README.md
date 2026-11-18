@@ -1,4 +1,7 @@
-# huboze 线路解析管家（LineDNS）v1.0.0
+# huboze 线路解析管家（LineDNS）
+
+[![版本](https://img.shields.io/github/v/release/husibo16/huboze-LineDNS?label=%E7%89%88%E6%9C%AC)](https://github.com/husibo16/huboze-LineDNS/releases/latest)
+[![许可证](https://img.shields.io/github/license/husibo16/huboze-LineDNS?label=%E8%AE%B8%E5%8F%AF%E8%AF%81)](LICENSE)
 
 Go + Docker + Docker Compose
 
