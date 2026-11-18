@@ -5,6 +5,7 @@
 [![CI](https://github.com/husibo16/huboze-LineDNS/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/husibo16/huboze-LineDNS/actions/workflows/ci.yml)
 [![Go](https://img.shields.io/github/go-mod/go-version/husibo16/huboze-LineDNS?logo=go&label=Go)](go.mod)
 [![下载量](https://img.shields.io/github/downloads/husibo16/huboze-LineDNS/total?label=%E4%B8%8B%E8%BD%BD%E9%87%8F)](https://github.com/husibo16/huboze-LineDNS/releases)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](#一键部署推荐)
 
 Go + Docker + Docker Compose
 
