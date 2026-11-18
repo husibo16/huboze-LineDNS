@@ -13,7 +13,7 @@ OUT="dist/$NAME"
 rm -rf "$OUT" "dist/$NAME.tar.gz"
 mkdir -p "$OUT"
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o "$OUT/huboze-ddns-agent" .
-cp deploy.sh README.md "$OUT/"
+cp deploy.sh README.md LICENSE "$OUT/"
 chmod +x "$OUT/huboze-ddns-agent" "$OUT/deploy.sh"
 
 cat > "$OUT/部署说明.txt" <<TXT
@@ -24,6 +24,7 @@ huboze 线路解析管家 v$VERSION 部署包
   huboze-ddns-agent    程序（静态编译，Linux x86_64）
   SHA256SUMS           校验文件（deploy.sh 会自动校验）
   README.md            完整说明
+  LICENSE              许可证（Apache-2.0）
 
 部署（Debian 13，root）：
   tar xzf $NAME.tar.gz

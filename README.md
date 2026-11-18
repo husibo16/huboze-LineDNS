@@ -116,3 +116,7 @@ GitHub Actions（运行在打了 `huboze-linedns` 标签的自托管运行器上
 - **CI**（`.github/workflows/ci.yml`）：推送到 `main` 或提交 PR 时执行 gofmt / vet / test / 打包，部署包作为构建产物保留 14 天
 - **Release**（`.github/workflows/release.yml`）：推送 `v*` 标签（须与 `main.go` 中的 `Version` 一致，例如 `v1.0.0`）时自动创建 GitHub Release 并上传部署包
 
+
+## 许可证
+
+本项目采用 [Apache License 2.0](LICENSE) 许可证。
