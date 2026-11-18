@@ -28,8 +28,8 @@ huboze 线路解析管家 v$VERSION 部署包
 部署（Debian 13，root）：
   tar xzf $NAME.tar.gz
   cd $NAME
-  bash deploy.sh               # 首次默认端口 8080，升级沿用原端口
-  bash deploy.sh -p 9090       # 指定端口
+  bash deploy.sh               # 首次默认端口 9090，升级沿用原端口
+  bash deploy.sh -p 8080       # 指定端口
 
 部署完成后会显示：Web 访问地址（公网/内网/本机）、健康检查地址、
 admin 账号与初始密码、部署目录、常用命令和下一步操作，

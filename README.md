@@ -25,8 +25,8 @@ go test ./...      # 含模拟 H3C SSH 服务器、模拟 Cloudflare API 的测�
 
 ```bash
 tar xzf huboze-ddns-agent-vX.Y.Z.tar.gz && cd huboze-ddns-agent-vX.Y.Z
-bash deploy.sh               # 首次默认端口 8080；升级沿用原端口
-bash deploy.sh -p 9090       # 指定 / 修改端口
+bash deploy.sh               # 首次默认端口 9090；升级沿用原端口
+bash deploy.sh -p 8080       # 指定 / 修改端口
 ```
 
 `deploy.sh` 会校验程序 SHA256、执行安装并记录日志（`/root/huboze-ddns-agent-deploy-*.log`，权限 600）。
@@ -39,8 +39,8 @@ admin 账号与初始密码、部署目录与密钥位置、常用命令、下�
 把编译好的 `huboze-ddns-agent` 拷到服务器上（单文件，约 14MB，可离线拷贝）：
 
 ```bash
-./huboze-ddns-agent install                 # 首次默认端口 8080；升级时沿用原端口
-WEB_PORT=9090 ./huboze-ddns-agent install   # 指定/修改端口
+./huboze-ddns-agent install                 # 首次默认端口 9090；升级时沿用原端口
+WEB_PORT=8080 ./huboze-ddns-agent install   # 指定/修改端口
 ```
 
 安装器会自动完成：

@@ -62,7 +62,7 @@ func usage() {
   reset-whitelist           清空 Web 来源 CIDR 白名单（白名单配错被锁在外面时使用）
   version
 
-环境变量: WEB_PORT（默认沿用当前端口，首次安装为 8080）、HUBOZE_APP_DIR（默认 /opt/huboze-ddns-agent）`)
+环境变量: WEB_PORT（默认沿用当前端口，首次安装为 9090）、HUBOZE_APP_DIR（默认 /opt/huboze-ddns-agent）`)
 }
 
 func main() {
@@ -139,7 +139,7 @@ func webPort() string {
 	if p := strings.TrimSpace(os.Getenv("WEB_PORT")); p != "" {
 		return p
 	}
-	return "8080"
+	return "9090"
 }
 
 func serve() error {

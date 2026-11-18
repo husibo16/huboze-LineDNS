@@ -3,8 +3,8 @@
 #  huboze 线路解析管家 一键部署脚本（Go + Docker + Docker Compose）
 #
 #  用法（root）：
-#    bash deploy.sh                 # 首次安装默认端口 8080；升级时沿用原端口
-#    bash deploy.sh -p 9090         # 指定 / 修改 Web 端口
+#    bash deploy.sh                 # 首次安装默认端口 9090；升级时沿用原端口
+#    bash deploy.sh -p 8080         # 指定 / 修改 Web 端口
 #    bash deploy.sh info            # 再次显示部署信息（地址、账号、目录）
 #
 #  本脚本与程序文件 huboze-ddns-agent 放在同一目录。部署完成后会显示并保存

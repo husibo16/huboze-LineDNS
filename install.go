@@ -628,7 +628,7 @@ func install() (retErr error) {
 		port = existingPort()
 	}
 	if port == "" {
-		port = "8080"
+		port = "9090"
 	}
 	if n, err := strconv.Atoi(port); err != nil || n < 1 || n > 65535 {
 		errorf("WEB_PORT 非法：%q（应为 1-65535 的数字）", port)
